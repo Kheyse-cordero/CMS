@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Document Request - MinSU DocuReg</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-slide-in-up { animation: slideInUp 0.8s ease-out; }
+        .animate-fade-in-down { animation: fadeInDown 0.6s ease-out; }
+        .form-group { transition: all 0.3s ease; }
+        .form-group:hover { transform: translateX(4px); }
+        .input-focus { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .input-focus:focus { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .btn-submit { transition: all 0.3s ease; }
+        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3); }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 min-h-screen">
+    {{>navbar}}
+
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
+        <!-- Header -->
+        <div class="animate-fade-in-down mb-8">
+            <h1 class="text-4xl font-black text-gray-800 mb-2">Request Document</h1>
+            <p class="text-gray-600 text-lg">Fill out the form below to submit a document request</p>
+        </div>
+
+        {{#if error}}
+            <div class="mb-6 bg-red-50 border-l-4 border-red-500 rounded-lg px-6 py-4 animate-fade-in-down">
+                <p class="text-red-600 font-medium">
+                    <i class="fas fa-exclamation-circle mr-2"></i> {{error}}
+                </p>
+            </div>
+        {{/if}}
+
+        <!-- Form Card -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-slide-in-up">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-6">
+                <h2 class="text-white text-2xl font-black flex items-center">
+                    <i class="fas fa-file-import mr-3"></i> Document Request Form
+                </h2>
+            </div>
+            <form method="POST" action="/student/request/create" class="p-8">
+                <!-- Document Type -->
+                <div class="form-group mb-8">
+                    <label for="documentType" class="block text-gray-800 font-bold mb-3">
+                        <i class="fas fa-file text-blue-600 mr-2"></i> Document Type
+                    </label>
+                    <select 
+                        id="documentType" 
+                        name="documentType" 
+                        required
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 focus:shadow-lg transition font-medium"
+                    >
+                        <option value="">-- Select Document Type --</option>
+                        <option value="transcript">Transcript of Records</option>
+                        <option value="diploma">Diploma/Certificate</option>
+                        <option value="certificate">Certificate of Completion</option>
+                        <option value="verification">Verification Letter</option>
+                        <option value="enrollment_certificate">Enrollment Certificate</option>
+                        <option value="good_moral">Good Moral Certificate</option>
+                    </select>
+                </div>
+
+                <!-- Purpose -->
+                <div class="form-group mb-8">
+                    <label for="purpose" class="block text-gray-800 font-bold mb-3">
+                        <i class="fas fa-pen-fancy text-blue-600 mr-2"></i> Purpose of Request
+                    </label>
+                    <textarea 
+                        id="purpose" 
+                        name="purpose" 
+                        required
+                        placeholder="Explain why you need this document..."
+                        rows="4"
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 focus:shadow-lg transition resize-none font-medium"
+                    ></textarea>
+                    <p class="text-gray-500 text-sm mt-2"><i class="fas fa-info-circle mr-1"></i>e.g., For job application, scholarship, further studies, etc.</p>
+                </div>
+
+                <!-- Quantity -->
+                <div class="form-group mb-8">
+                    <label for="quantity" class="block text-gray-800 font-bold mb-3">
+                        <i class="fas fa-copy text-blue-600 mr-2"></i> Number of Copies
+                    </label>
+                    <input 
+                        type="number" 
+                        id="quantity" 
+                        name="quantity" 
+                        min="1" 
+                        max="10"
+                        value="1"
+                        required
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 focus:shadow-lg transition font-medium"
+                    >
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex gap-4 pt-6 border-t-2 border-gray-200">
+                    <button 
+                        type="submit"
+                        class="btn-submit flex-1 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl"
+                    >
+                        <i class="fas fa-check-circle mr-2"></i> Submit Request
+                    </button>
+                    <a 
+                        href="/student/requests"
+                        class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-4 rounded-lg text-center transition transform hover:scale-105 shadow-lg"
+                    >
+                        <i class="fas fa-arrow-left mr-2"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Info Box -->
+        <div class="mt-8 bg-blue-50 border-l-4 border-blue-600 rounded-lg p-6">
+            <h3 class="font-semibold text-blue-900 mb-3">
+                <i class="fas fa-info-circle text-blue-600"></i> Important Information
+            </h3>
+            <ul class="text-sm text-blue-800 space-y-2">
+                <li>• Most documents are processed within 3-5 business days</li>
+                <li>• You will receive an email notification when your document is ready</li>
+                <li>• Schedule a pickup appointment through the system</li>
+                <li>• Processing fees may apply (see registrar office for details)</li>
+            </ul>
+        </div>
+    </div>
+
+    {{>footer}}
+</body>
+</html>
