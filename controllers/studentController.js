@@ -13,6 +13,21 @@ import { User } from "../models/userModel.js";
 import { sequelize } from "../models/db.js";
 
 /**
+ * Returns a new Date that is `days` working days after `startDate`.
+ * Skips Saturdays (6) and Sundays (0).
+ */
+function addWorkingDays(startDate, days) {
+  const d = new Date(startDate);
+  let added = 0;
+  while (added < days) {
+    d.setDate(d.getDate() + 1);
+    const dow = d.getDay();
+    if (dow !== 0 && dow !== 6) added++;
+  }
+  return d;
+}
+
+/**
  * Student: View dashboard with stats and recent requests
  */
 export const getDashboard = async (req, res) => {
@@ -94,8 +109,18 @@ export const getRequestForm = (req, res) => {
 /**
  * Student: Submit a new document request
  */
+const ALLOWED_DOCUMENT_TYPES = ['transcript', 'transfer_credentials', 'diploma_second_copy'];
+
 export const createRequest = async (req, res) => {
   const { documentType, purpose, quantity } = req.body;
+
+  if (!ALLOWED_DOCUMENT_TYPES.includes(documentType)) {
+    return res.render('student/request-form', {
+      title: 'Request Document',
+      user: req.user,
+      error: 'Invalid document type selected. Please choose one of the available document types.'
+    });
+  }
   
   try {
     const request = await DocumentRequest.create({
@@ -150,11 +175,21 @@ export const getRequestDetails = async (req, res) => {
       where: { documentRequestId: request.id }
     });
     
+    // Compute the 6-working-day processing deadline
+    const processingDeadlineDate = addWorkingDays(request.createdAt, 6);
+    const processingDeadline = processingDeadlineDate.toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+    // ISO format for the date input's min attribute
+    const processingDeadlineISO = processingDeadlineDate.toISOString().split('T')[0];
+
     res.render("student/request-details", {
       title: "Request Details",
       request,
       appointments,
-      user: req.user
+      user: req.user,
+      processingDeadline,
+      processingDeadlineISO
     });
   } catch (err) {
     console.error("Error fetching request details:", err);
@@ -233,6 +268,15 @@ export const scheduleAppointment = async (req, res) => {
         message: "You do not have permission to schedule appointments for this request",
         statusCode: 403
       });
+    }
+
+    // Enforce 6-working-day minimum before appointment
+    const deadline = addWorkingDays(request.createdAt, 6);
+    deadline.setHours(0, 0, 0, 0);
+    const chosen = new Date(appointmentDate);
+    chosen.setHours(0, 0, 0, 0);
+    if (chosen < deadline) {
+      return res.redirect(`/student/requests/${documentRequestId}?error=appointment_too_early`);
     }
     
     const appointment = await Appointment.create({

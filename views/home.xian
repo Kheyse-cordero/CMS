@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,10 +39,10 @@
         }
         @keyframes pulse-glow {
             0%, 100% {
-                box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+                box-shadow: 0 0 20px rgba(132, 177, 121, 0.5);
             }
             50% {
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+                box-shadow: 0 0 40px rgba(132, 177, 121, 0.8);
             }
         }
         @keyframes float {
@@ -91,25 +91,48 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Hero Section -->
-    <div class="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-32 overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -top-40 -right-40 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl animate-pulse"></div>
-            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl animate-pulse"></div>
+
+    <!-- Logout Toast -->
+    <div id="logoutToast" class="hidden fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-[#84B179] to-[#6b9460] text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-4" style="animation: fadeInDown 0.5s ease-out;">
+        <div class="bg-white bg-opacity-20 rounded-full p-2">
+            <i class="fas fa-check-circle text-xl"></i>
         </div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div>
+            <p class="font-black text-lg">Logged Out Successfully</p>
+            <p class="text-[#C7EABB] text-sm">Thank you for using MinSU DocuReg</p>
+        </div>
+        <button onclick="document.getElementById('logoutToast').classList.add('hidden')" class="ml-4 text-[#C7EABB] hover:text-white transition">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('loggedOut') === '1') {
+                const toast = document.getElementById('logoutToast');
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 4000);
+            }
+        })();
+    </script>
+
+    <!-- Hero Section -->
+    <div class="relative text-white overflow-hidden flex items-center justify-center" style="min-height: 75vh; background-image: url('/bg.png'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <!-- Dark green overlay for readability -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(90,122,81,0.82) 0%, rgba(107,148,96,0.75) 50%, rgba(90,122,81,0.85) 100%);"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24">
             <div class="mb-6 animate-float">
                 <i class="fas fa-file-contract text-7xl drop-shadow-lg animate-pulse-glow"></i>
             </div>
             <h1 class="text-6xl md:text-7xl font-black mb-4 animate-fade-in-down drop-shadow-lg">MinSU DocuReg</h1>
-            <p class="text-xl md:text-2xl text-blue-100 mb-8 animate-fade-in-up">Document Management System for Mindoro State University</p>
+            <p class="text-xl md:text-2xl text-[#E8F5BD] mb-8 animate-fade-in-up">Document Management System for Mindoro State University</p>
             <div class="flex gap-4 justify-center flex-wrap animate-fade-in-up">
-                <a href="/login" class="bg-white text-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-blue-50 btn-pulse shadow-lg">
+                <button onclick="openLoginModal()" class="bg-white text-[#84B179] font-bold px-8 py-4 rounded-xl hover:bg-[#E8F5BD] btn-pulse shadow-lg">
                     <i class="fas fa-sign-in-alt"></i> Login
-                </a>
-                <a href="/register" class="bg-blue-700 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-800 btn-pulse shadow-lg border-2 border-white hover:border-blue-200">
+                </button>
+                <button onclick="openRegisterModal()" class="bg-[#84B179] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#6b9460] btn-pulse shadow-lg border-2 border-white hover:border-[#C7EABB]">
                     <i class="fas fa-user-plus"></i> Register Now
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -120,7 +143,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Feature 1 -->
             <div class="bg-white rounded-2xl shadow-lg p-8 hover-lift">
-                <div class="feature-icon text-blue-600 text-5xl mb-4">
+                <div class="feature-icon text-[#84B179] text-5xl mb-4">
                     <i class="fas fa-clipboard-list"></i>
                 </div>
                 <h3 class="text-2xl font-bold mb-3 text-gray-800">Easy Document Requests</h3>
@@ -129,7 +152,7 @@
 
             <!-- Feature 2 -->
             <div class="bg-white rounded-2xl shadow-lg p-8 hover-lift" style="animation-delay: 0.1s">
-                <div class="feature-icon text-indigo-600 text-5xl mb-4">
+                <div class="feature-icon text-[#84B179] text-5xl mb-4">
                     <i class="fas fa-calendar-check"></i>
                 </div>
                 <h3 class="text-2xl font-bold mb-3 text-gray-800">Appointment Scheduling</h3>
@@ -152,43 +175,43 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl md:text-5xl font-black text-center mb-16 animate-fade-in-down">Available Documents</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-blue-50 transition-colors">
-                    <div class="feature-icon text-blue-600 text-4xl mb-4">
+                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-[#E8F5BD] transition-colors">
+                    <div class="feature-icon text-[#84B179] text-4xl mb-4">
                         <i class="fas fa-scroll"></i>
                     </div>
                     <h4 class="font-bold text-lg mb-2 text-gray-800">Transcript of Records</h4>
                     <p class="text-gray-600 text-sm">Official academic transcript with grades and credits</p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-indigo-50 transition-colors">
-                    <div class="feature-icon text-indigo-600 text-4xl mb-4">
+                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-[#E8F5BD] transition-colors">
+                    <div class="feature-icon text-[#84B179] text-4xl mb-4">
                         <i class="fas fa-certificate"></i>
                     </div>
                     <h4 class="font-bold text-lg mb-2 text-gray-800">Diploma/Certificate</h4>
                     <p class="text-gray-600 text-sm">Official diploma or program completion certificate</p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-green-50 transition-colors">
+                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-[#E8F5BD] transition-colors">
                     <div class="feature-icon text-green-600 text-4xl mb-4">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <h4 class="font-bold text-lg mb-2 text-gray-800">Verification Letter</h4>
                     <p class="text-gray-600 text-sm">Letter verifying enrollment, graduation, or academic standing</p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-yellow-50 transition-colors">
+                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-[#E8F5BD] transition-colors">
                     <div class="feature-icon text-yellow-600 text-4xl mb-4">
                         <i class="fas fa-id-card"></i>
                     </div>
                     <h4 class="font-bold text-lg mb-2 text-gray-800">Enrollment Certificate</h4>
                     <p class="text-gray-600 text-sm">Proof of current enrollment status</p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-red-50 transition-colors">
+                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-[#E8F5BD] transition-colors">
                     <div class="feature-icon text-red-600 text-4xl mb-4">
                         <i class="fas fa-heart"></i>
                     </div>
                     <h4 class="font-bold text-lg mb-2 text-gray-800">Good Moral Certificate</h4>
                     <p class="text-gray-600 text-sm">Certificate of good moral character</p>
                 </div>
-                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-purple-50 transition-colors">
-                    <div class="feature-icon text-purple-600 text-4xl mb-4">
+                <div class="bg-white rounded-2xl p-8 shadow-md hover-lift hover:bg-[#E8F5BD] transition-colors">
+                    <div class="feature-icon text-[#84B179] text-4xl mb-4">
                         <i class="fas fa-file-alt"></i>
                     </div>
                     <h4 class="font-bold text-lg mb-2 text-gray-800">Other Documents</h4>
@@ -199,17 +222,17 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="relative bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-24 overflow-hidden">
+    <div class="relative bg-gradient-to-r from-[#84B179] via-[#A2CB8B] to-[#C7EABB] text-white py-24 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute -top-40 -right-40 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
             <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
         </div>
         <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl md:text-5xl font-black mb-4 animate-fade-in-down">Ready to Get Started?</h2>
-            <p class="text-lg md:text-xl text-indigo-100 mb-8 animate-fade-in-up">Sign up now and submit your first document request today</p>
-            <a href="/register" class="inline-block bg-white text-indigo-600 font-bold px-12 py-5 rounded-xl hover:bg-indigo-50 btn-pulse shadow-xl text-lg">
+            <p class="text-lg md:text-xl text-[#E8F5BD] mb-8 animate-fade-in-up">Sign up now and submit your first document request today</p>
+            <button onclick="openRegisterModal()" class="inline-block bg-white text-[#84B179] font-bold px-12 py-5 rounded-xl hover:bg-[#E8F5BD] btn-pulse shadow-xl text-lg">
                 <i class="fas fa-arrow-right"></i> Create Your Account
-            </a>
+            </button>
         </div>
     </div>
 
@@ -224,8 +247,8 @@
                 <div>
                     <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/login" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fas fa-chevron-right text-xs mr-2"></i>Login</a></li>
-                        <li><a href="/register" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fas fa-chevron-right text-xs mr-2"></i>Register</a></li>
+                        <li><button onclick="openLoginModal()" class="text-gray-400 hover:text-white transition-colors duration-300 text-left"><i class="fas fa-chevron-right text-xs mr-2"></i>Login</button></li>
+                        <li><button onclick="openRegisterModal()" class="text-gray-400 hover:text-white transition-colors duration-300 text-left"><i class="fas fa-chevron-right text-xs mr-2"></i>Register</button></li>
                     </ul>
                 </div>
                 <div>
@@ -238,8 +261,8 @@
                 <div>
                     <h4 class="text-white font-semibold mb-4">Contact</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><i class="fas fa-envelope text-indigo-400"></i> info@minsu.edu.ph</li>
-                        <li><i class="fas fa-phone text-indigo-400"></i> +63-123-456-7890</li>
+                        <li><i class="fas fa-envelope text-[#A2CB8B]"></i> info@minsu.edu.ph</li>
+                        <li><i class="fas fa-phone text-[#A2CB8B]"></i> +63-123-456-7890</li>
                     </ul>
                 </div>
             </div>
@@ -248,5 +271,163 @@
             </div>
         </div>
     </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" onclick="handleModalBg(event,'loginModal')">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
+            <div class="bg-gradient-to-r from-[#84B179] to-[#6b9460] px-8 py-10 text-center relative">
+                <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-white hover:text-[#E8F5BD] text-2xl transition">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="flex justify-center mb-4">
+                    <div class="bg-white rounded-full p-4 shadow-lg">
+                        <i class="fas fa-file-contract text-[#84B179] text-3xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-white text-2xl font-black">Welcome Back</h2>
+                <p class="text-[#E8F5BD] text-sm mt-1">Sign in to your account</p>
+            </div>
+            <div class="px-8 py-8">
+                <div id="loginError" class="hidden mb-4 bg-red-50 border-l-4 border-red-500 rounded-lg px-4 py-3">
+                    <p class="text-red-600 text-sm font-medium"><i class="fas fa-exclamation-circle mr-2"></i><span id="loginErrorMsg"></span></p>
+                </div>
+                <form method="POST" action="/login" class="space-y-5">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Email Address</label>
+                        <div class="relative group">
+                            <i class="fas fa-envelope absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
+                            <input type="email" name="email" required placeholder="your@email.com"
+                                class="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition placeholder-gray-400">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Password</label>
+                        <div class="relative group">
+                            <i class="fas fa-lock absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
+                            <input type="password" name="password" required placeholder="••••••••"
+                                class="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition placeholder-gray-400">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#84B179] to-[#6b9460] text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl transition hover:scale-[1.02]">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Login
+                    </button>
+                </form>
+                <div class="mt-6 border-t border-gray-100 pt-6 text-center space-y-2">
+                    <p class="text-gray-600 text-sm">Don't have an account?
+                        <button onclick="switchModal('loginModal','registerModal')" class="text-[#84B179] font-bold hover:text-[#6b9460] transition">Register here</button>
+                    </p>
+                    <a href="/forgot-password" class="text-gray-500 text-sm hover:text-gray-700 transition block"><i class="fas fa-key mr-1"></i> Forgot password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4 overflow-y-auto" onclick="handleModalBg(event,'registerModal')">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden my-4">
+            <div class="bg-gradient-to-r from-[#84B179] to-[#6b9460] px-8 py-10 text-center relative">
+                <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-white hover:text-[#E8F5BD] text-2xl transition">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="flex justify-center mb-4">
+                    <div class="bg-white rounded-full p-4 shadow-lg">
+                        <i class="fas fa-user-plus text-[#84B179] text-3xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-white text-2xl font-black">Create Account</h2>
+                <p class="text-[#E8F5BD] text-sm mt-1">Join MinSU DocuReg</p>
+            </div>
+            <div class="px-8 py-8">
+                <div id="registerError" class="hidden mb-4 bg-red-50 border-l-4 border-red-500 rounded-lg px-4 py-3">
+                    <p class="text-red-600 text-sm font-medium"><i class="fas fa-exclamation-circle mr-2"></i><span id="registerErrorMsg"></span></p>
+                </div>
+                <form method="POST" action="/register" class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Full Name</label>
+                        <div class="relative group">
+                            <i class="fas fa-user absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
+                            <input type="text" name="name" required placeholder="Juan Dela Cruz"
+                                class="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition placeholder-gray-400">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Student ID <span class="text-gray-400 font-normal">(Optional)</span></label>
+                        <div class="relative group">
+                            <i class="fas fa-id-card absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
+                            <input type="text" name="studentId" placeholder="2024-001234"
+                                class="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition placeholder-gray-400">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Email Address</label>
+                        <div class="relative group">
+                            <i class="fas fa-envelope absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
+                            <input type="email" name="email" required placeholder="your@email.com"
+                                class="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition placeholder-gray-400">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Password</label>
+                        <div class="relative group">
+                            <i class="fas fa-lock absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
+                            <input type="password" name="password" required placeholder="••••••••"
+                                class="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition placeholder-gray-400">
+                        </div>
+                        <p class="text-gray-400 text-xs mt-1"><i class="fas fa-info-circle mr-1"></i>Minimum 8 characters</p>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#84B179] to-[#6b9460] text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl transition hover:scale-[1.02]">
+                        <i class="fas fa-user-plus mr-2"></i> Create Account
+                    </button>
+                </form>
+                <div class="mt-6 border-t border-gray-100 pt-6 text-center">
+                    <p class="text-gray-600 text-sm">Already have an account?
+                        <button onclick="switchModal('registerModal','loginModal')" class="text-[#84B179] font-bold hover:text-[#6b9460] transition">Login here</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function openLoginModal()    { openModal('loginModal'); }
+        function openRegisterModal() { openModal('registerModal'); }
+        function switchModal(from, to) { closeModal(from); openModal(to); }
+        function handleModalBg(e, id) {
+            if (e.target === document.getElementById(id)) closeModal(id);
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeModal('loginModal');
+                closeModal('registerModal');
+            }
+        });
+        // Auto-open modal + show error from URL params
+        (function () {
+            const p = new URLSearchParams(window.location.search);
+            const modal = p.get('modal');
+            const err   = p.get('error');
+            if (modal === 'login') {
+                openLoginModal();
+                if (err) {
+                    document.getElementById('loginError').classList.remove('hidden');
+                    document.getElementById('loginErrorMsg').textContent = err;
+                }
+            } else if (modal === 'register') {
+                openRegisterModal();
+                if (err) {
+                    document.getElementById('registerError').classList.remove('hidden');
+                    document.getElementById('registerErrorMsg').textContent = err;
+                }
+            }
+        })();
+    </script>
 </body>
 </html>

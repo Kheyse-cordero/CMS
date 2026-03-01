@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,16 +16,16 @@
         .input-focus { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .input-focus:focus { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
         .btn-submit { transition: all 0.3s ease; }
-        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3); }
+        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 15px 35px rgba(132, 177, 121, 0.3); }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 min-h-screen">
+<body class="bg-gradient-to-br from-gray-50 via-[#E8F5BD] to-gray-100 min-h-screen">
     {{>navbar}}
 
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
+    <div class="md:ml-64 px-4 sm:px-6 lg:px-8 py-8">
         <!-- Header -->
         <div class="animate-fade-in-down mb-8">
-            <h1 class="text-4xl font-black text-gray-800 mb-2">Request Document</h1>
+            <h1 class="text-3xl font-black text-gray-800 mb-2">Request Document</h1>
             <p class="text-gray-600 text-lg">Fill out the form below to submit a document request</p>
         </div>
 
@@ -39,7 +39,7 @@
 
         <!-- Form Card -->
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-slide-in-up">
-            <div class="bg-gradient-to-r from-blue-600 to-blue-800 px-8 py-6">
+            <div class="bg-gradient-to-r from-[#84B179] to-[#6b9460] px-8 py-6">
                 <h2 class="text-white text-2xl font-black flex items-center">
                     <i class="fas fa-file-import mr-3"></i> Document Request Form
                 </h2>
@@ -48,28 +48,25 @@
                 <!-- Document Type -->
                 <div class="form-group mb-8">
                     <label for="documentType" class="block text-gray-800 font-bold mb-3">
-                        <i class="fas fa-file text-blue-600 mr-2"></i> Document Type
+                        <i class="fas fa-file text-[#84B179] mr-2"></i> Document Type
                     </label>
                     <select 
                         id="documentType" 
                         name="documentType" 
                         required
-                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 focus:shadow-lg transition font-medium"
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#84B179] focus:shadow-lg transition font-medium"
                     >
                         <option value="">-- Select Document Type --</option>
                         <option value="transcript">Transcript of Records</option>
-                        <option value="diploma">Diploma/Certificate</option>
-                        <option value="certificate">Certificate of Completion</option>
-                        <option value="verification">Verification Letter</option>
-                        <option value="enrollment_certificate">Enrollment Certificate</option>
-                        <option value="good_moral">Good Moral Certificate</option>
+                        <option value="transfer_credentials">Certificate of Transfer Credentials and Academic Records</option>
+                        <option value="diploma_second_copy">Second Copy of Diploma</option>
                     </select>
                 </div>
 
                 <!-- Purpose -->
                 <div class="form-group mb-8">
                     <label for="purpose" class="block text-gray-800 font-bold mb-3">
-                        <i class="fas fa-pen-fancy text-blue-600 mr-2"></i> Purpose of Request
+                        <i class="fas fa-pen-fancy text-[#84B179] mr-2"></i> Purpose of Request
                     </label>
                     <textarea 
                         id="purpose" 
@@ -77,7 +74,7 @@
                         required
                         placeholder="Explain why you need this document..."
                         rows="4"
-                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 focus:shadow-lg transition resize-none font-medium"
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#84B179] focus:shadow-lg transition resize-none font-medium"
                     ></textarea>
                     <p class="text-gray-500 text-sm mt-2"><i class="fas fa-info-circle mr-1"></i>e.g., For job application, scholarship, further studies, etc.</p>
                 </div>
@@ -85,7 +82,7 @@
                 <!-- Quantity -->
                 <div class="form-group mb-8">
                     <label for="quantity" class="block text-gray-800 font-bold mb-3">
-                        <i class="fas fa-copy text-blue-600 mr-2"></i> Number of Copies
+                        <i class="fas fa-copy text-[#84B179] mr-2"></i> Number of Copies
                     </label>
                     <input 
                         type="number" 
@@ -95,7 +92,7 @@
                         max="10"
                         value="1"
                         required
-                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 focus:shadow-lg transition font-medium"
+                        class="input-focus w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#84B179] focus:shadow-lg transition font-medium"
                     >
                 </div>
 
@@ -103,7 +100,7 @@
                 <div class="flex gap-4 pt-6 border-t-2 border-gray-200">
                     <button 
                         type="submit"
-                        class="btn-submit flex-1 bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl"
+                        class="btn-submit flex-1 bg-gradient-to-r from-[#84B179] to-[#6b9460] text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl"
                     >
                         <i class="fas fa-check-circle mr-2"></i> Submit Request
                     </button>
@@ -118,14 +115,14 @@
         </div>
 
         <!-- Info Box -->
-        <div class="mt-8 bg-blue-50 border-l-4 border-blue-600 rounded-lg p-6">
-            <h3 class="font-semibold text-blue-900 mb-3">
-                <i class="fas fa-info-circle text-blue-600"></i> Important Information
+        <div class="mt-8 bg-[#E8F5BD] border-l-4 border-[#84B179] rounded-lg p-6">
+            <h3 class="font-semibold text-[#4a6b40] mb-3">
+                <i class="fas fa-info-circle text-[#84B179]"></i> Important Information
             </h3>
-            <ul class="text-sm text-blue-800 space-y-2">
-                <li>• Most documents are processed within 3-5 business days</li>
-                <li>• You will receive an email notification when your document is ready</li>
-                <li>• Schedule a pickup appointment through the system</li>
+            <ul class="text-sm text-[#5a7a51] space-y-2">
+                <li>• All documents require a <strong>six (6) working days</strong> processing period</li>
+                <li>• An <strong>appointment is required</strong> to claim your document — schedule one through the system after submitting your request</li>
+                <li>• Available documents: Transcript of Records, Certificate of Transfer Credentials and Academic Records, and Second Copy of Diploma</li>
                 <li>• Processing fees may apply (see registrar office for details)</li>
             </ul>
         </div>

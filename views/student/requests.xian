@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,24 +14,24 @@
         .table-row-hover { transition: all 0.2s ease; }
         .table-row-hover:hover { background-color: #f3f4f6; transform: translateX(4px); }
         .btn-new { transition: all 0.3s ease; }
-        .btn-new:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3); }
+        .btn-new:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(132, 177, 121, 0.3); }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 min-h-screen">
+<body class="bg-gradient-to-br from-gray-50 via-[#E8F5BD] to-gray-100 min-h-screen">
     {{>navbar}}
 
-    <div class="max-w-7xl mx-auto px-6 py-12 pt-24">
+    <div class="md:ml-64 px-6 py-12">
         <!-- Header -->
         <div class="animate-fade-in-down mb-10">
-            <h1 class="text-5xl font-black text-gray-800 mb-2">My Document Requests</h1>
-            <p class="text-gray-600 text-lg">Track and manage all your document requests</p>
+            <h1 class="text-3xl font-black text-gray-800 mb-2">My Document Requests</h1>
+            <p class="text-gray-600 text-sm">Track and manage all your document requests</p>
         </div>
 
         <!-- New Request Button -->
         <div class="mb-8">
-            <a href="/student/request/new" class="btn-new inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold px-8 py-4 rounded-xl shadow-lg">
+            <button onclick="openRequestModal()" class="btn-new inline-flex items-center bg-gradient-to-r from-[#84B179] to-[#6b9460] hover:from-[#84B179] hover:to-[#6b9460] text-white font-bold px-8 py-4 rounded-xl shadow-lg">
                 <i class="fas fa-plus-circle mr-2 text-xl"></i> New Request
-            </a>
+            </button>
         </div>
 
         <!-- Requests Table -->
@@ -54,15 +54,16 @@
                         {{#each requests}}
                             <tr class="table-row-hover border-b-2 border-gray-200">
                                 <td class="px-8 py-5 text-gray-800 font-medium">
-                                    <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-bold inline-flex items-center">
-                                        <i class="fas fa-file mr-2"></i> {{this.documentType}}
+                                    <span class="bg-[#C7EABB] text-[#5a7a51] px-4 py-2 rounded-full text-sm font-bold inline-flex items-center">
+                                        <i class="fas fa-file mr-2"></i>
+                                        {{#switch this.documentType}}{{#case 'transcript'}}Transcript of Records{{/case}}{{#case 'transfer_credentials'}}Certificate of Transfer Credentials{{/case}}{{#case 'diploma_second_copy'}}Second Copy of Diploma{{/case}}{{/switch}}
                                     </span>
                                 </td>
                                 <td class="px-8 py-5 text-gray-600">{{this.purpose}}</td>
                                 <td class="px-8 py-5">
                                     {{#switch this.status}}
                                         {{#case 'pending'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-yellow-100 text-yellow-800 inline-flex items-center"><i class="fas fa-hourglass-start mr-2"></i>Pending</span>{{/case}}
-                                        {{#case 'processing'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-blue-100 text-blue-800 inline-flex items-center"><i class="fas fa-spinner mr-2"></i>Processing</span>{{/case}}
+                                        {{#case 'processing'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-[#C7EABB] text-[#5a7a51] inline-flex items-center"><i class="fas fa-spinner mr-2"></i>Processing</span>{{/case}}
                                         {{#case 'ready'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-green-100 text-green-800 inline-flex items-center"><i class="fas fa-check-circle mr-2"></i>Ready</span>{{/case}}
                                         {{#case 'completed'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-emerald-100 text-emerald-800 inline-flex items-center"><i class="fas fa-check-double mr-2"></i>Completed</span>{{/case}}
                                         {{#case 'rejected'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-red-100 text-red-800 inline-flex items-center"><i class="fas fa-times-circle mr-2"></i>Rejected</span>{{/case}}
@@ -70,7 +71,7 @@
                                 </td>
                                 <td class="px-8 py-5 text-gray-600 font-medium">{{formatDate this.createdAt}}</td>
                                 <td class="px-8 py-5">
-                                    <a href="/student/requests/{{this.id}}" class="text-blue-600 hover:text-blue-800 font-bold inline-flex items-center transition hover:translate-x-1">
+                                    <a href="/student/requests/{{this.id}}" class="text-[#84B179] hover:text-[#5a7a51] font-bold inline-flex items-center transition hover:translate-x-1">
                                         <i class="fas fa-arrow-right mr-2"></i> Details
                                     </a>
                                 </td>
@@ -80,7 +81,7 @@
                                 <td colspan="5" class="px-8 py-12 text-center text-gray-500">
                                     <i class="fas fa-inbox text-4xl mb-4 block opacity-50"></i>
                                     <p class="mb-4">No requests found.</p>
-                                    <a href="/student/request/new" class="text-blue-600 hover:text-blue-800 font-bold">Create one now</a>
+                                    <button onclick="openRequestModal()" class="text-[#84B179] hover:text-[#5a7a51] font-bold">Create one now</button>
                                 </td>
                             </tr>
                         {{/each}}
@@ -91,5 +92,105 @@
     </div>
 
     {{>footer}}
+
+    <!-- New Request Modal -->
+    <div id="requestModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onclick="handleModalBackdrop(event)">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-fade-in-up">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-[#84B179] to-[#6b9460] px-8 py-6 flex items-center justify-between">
+                <h2 class="text-white text-2xl font-black flex items-center">
+                    <i class="fas fa-file-import mr-3"></i> New Document Request
+                </h2>
+                <button onclick="closeRequestModal()" class="text-[#C7EABB] hover:text-white transition text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <form method="POST" action="/student/request/create" class="p-8 space-y-6">
+
+                {{#if error}}
+                <div class="bg-red-50 border-l-4 border-red-500 rounded-lg px-5 py-3">
+                    <p class="text-red-600 font-medium text-sm"><i class="fas fa-exclamation-circle mr-2"></i>{{error}}</p>
+                </div>
+                {{/if}}
+
+                <!-- Document Type -->
+                <div>
+                    <label for="documentType" class="block text-gray-800 font-bold mb-2">
+                        <i class="fas fa-file text-[#84B179] mr-2"></i> Document Type
+                    </label>
+                    <select id="documentType" name="documentType" required
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition font-medium">
+                        <option value="">-- Select Document Type --</option>
+                        <option value="transcript">Transcript of Records</option>
+                        <option value="transfer_credentials">Certificate of Transfer Credentials and Academic Records</option>
+                        <option value="diploma_second_copy">Second Copy of Diploma</option>
+                    </select>
+                </div>
+
+                <!-- Purpose -->
+                <div>
+                    <label for="purpose" class="block text-gray-800 font-bold mb-2">
+                        <i class="fas fa-pen-fancy text-[#84B179] mr-2"></i> Purpose of Request
+                    </label>
+                    <textarea id="purpose" name="purpose" required
+                        placeholder="Explain why you need this document..."
+                        rows="3"
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition resize-none font-medium"></textarea>
+                    <p class="text-gray-500 text-xs mt-1"><i class="fas fa-info-circle mr-1"></i>e.g., For job application, scholarship, further studies</p>
+                </div>
+
+                <!-- Quantity -->
+                <div>
+                    <label for="quantity" class="block text-gray-800 font-bold mb-2">
+                        <i class="fas fa-copy text-[#84B179] mr-2"></i> Number of Copies
+                    </label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#84B179] transition font-medium">
+                </div>
+
+                <!-- Info Note -->
+                <div class="bg-[#E8F5BD] border-l-4 border-[#A2CB8B] rounded-lg p-4 text-sm text-[#5a7a51]">
+                    <i class="fas fa-info-circle mr-2 text-[#84B179]"></i>
+                    Processing takes <strong>6 working days</strong>. An appointment is required to claim your document.
+                </div>
+
+                <!-- Actions -->
+                <div class="flex gap-4 pt-2">
+                    <button type="submit"
+                        class="flex-1 bg-gradient-to-r from-[#84B179] to-[#6b9460] hover:from-[#84B179] hover:to-[#6b9460] text-white font-bold py-3 rounded-lg shadow-lg transition">
+                        <i class="fas fa-check-circle mr-2"></i> Submit Request
+                    </button>
+                    <button type="button" onclick="closeRequestModal()"
+                        class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 rounded-lg transition">
+                        <i class="fas fa-times mr-2"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openRequestModal() {
+            document.getElementById('requestModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeRequestModal() {
+            document.getElementById('requestModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function handleModalBackdrop(e) {
+            if (e.target === document.getElementById('requestModal')) closeRequestModal();
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeRequestModal();
+        });
+        // Auto-open modal when redirected from a "New Request" link
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('newRequest') === '1') openRequestModal();
+        })();
+    </script>
 </body>
 </html>

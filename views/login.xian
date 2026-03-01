@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,26 +46,26 @@
         }
         .btn-submit:hover {
             transform: scale(1.02);
-            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 15px 35px rgba(132, 177, 121, 0.3);
         }
         .btn-submit:active {
             transform: scale(0.98);
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center justify-center">
+<body class="bg-gradient-to-br from-[#E8F5BD] via-indigo-50 to-purple-50 min-h-screen flex items-center justify-center">
     <div class="max-w-md w-full px-4 animate-slide-in-up">
         <!-- Card -->
         <div class="bg-white rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300">
             <!-- Header -->
-            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-16">
+            <div class="bg-gradient-to-r from-[#84B179] to-indigo-600 px-8 py-16">
                 <div class="flex justify-center mb-6 animate-bounce">
                     <div class="bg-white rounded-full p-4 shadow-lg">
-                        <i class="fas fa-file-contract text-blue-600 text-4xl"></i>
+                        <i class="fas fa-file-contract text-[#84B179] text-4xl"></i>
                     </div>
                 </div>
                 <h1 class="text-white text-3xl font-black text-center">MinSU DocuReg</h1>
-                <p class="text-blue-100 text-center text-sm mt-2 font-medium">Document Management System</p>
+                <p class="text-[#E8F5BD] text-center text-sm mt-2 font-medium">Document Management System</p>
             </div>
 
             <!-- Form -->
@@ -82,14 +82,14 @@
                     <div class="animate-slide-in-up" style="animation-delay: 0.1s">
                         <label for="email" class="block text-gray-700 font-bold mb-3">Email Address</label>
                         <div class="relative group">
-                            <i class="fas fa-envelope absolute left-4 top-4 text-gray-400 group-focus-within:text-blue-600 transition-colors"></i>
+                            <i class="fas fa-envelope absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
                             <input 
                                 type="email" 
                                 id="email" 
                                 name="email" 
                                 required
                                 placeholder="your@email.com"
-                                class="input-focus w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 placeholder-gray-400"
+                                class="input-focus w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#84B179] transition-all duration-300 placeholder-gray-400"
                             >
                         </div>
                     </div>
@@ -97,21 +97,21 @@
                     <div class="animate-slide-in-up" style="animation-delay: 0.2s">
                         <label for="password" class="block text-gray-700 font-bold mb-3">Password</label>
                         <div class="relative group">
-                            <i class="fas fa-lock absolute left-4 top-4 text-gray-400 group-focus-within:text-blue-600 transition-colors"></i>
+                            <i class="fas fa-lock absolute left-4 top-4 text-gray-400 group-focus-within:text-[#84B179] transition-colors"></i>
                             <input 
                                 type="password" 
                                 id="password" 
                                 name="password" 
                                 required
                                 placeholder="••••••••"
-                                class="input-focus w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-blue-600 transition-all duration-300 placeholder-gray-400"
+                                class="input-focus w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#84B179] transition-all duration-300 placeholder-gray-400"
                             >
                         </div>
                     </div>
 
                     <button 
                         type="submit"
-                        class="btn-submit w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-3 rounded-lg mt-8 shadow-lg hover:shadow-xl"
+                        class="btn-submit w-full bg-gradient-to-r from-[#84B179] to-indigo-600 text-white font-bold py-3 rounded-lg mt-8 shadow-lg hover:shadow-xl"
                     >
                         <i class="fas fa-sign-in-alt mr-2"></i> Login
                     </button>
@@ -120,7 +120,7 @@
                 <div class="mt-8 border-t-2 border-gray-100 pt-8 space-y-4">
                     <p class="text-gray-600 text-center text-sm">
                         Don't have an account? 
-                        <a href="/register" class="text-blue-600 font-bold hover:text-blue-700 hover:underline transition-all">Register here</a>
+                        <a href="/register" class="text-[#84B179] font-bold hover:text-[#6b9460] hover:underline transition-all">Register here</a>
                     </p>
                     <div>
                         <a href="/forgot-password" class="text-center block text-sm text-gray-500 hover:text-gray-700 hover:underline transition-colors">

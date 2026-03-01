@@ -28,11 +28,8 @@ export const DocumentRequest = sequelize.define("DocumentRequest", {
   documentType: {
     type: DataTypes.ENUM(
       'transcript',
-      'diploma',
-      'certificate',
-      'verification',
-      'enrollment_certificate',
-      'good_moral'
+      'transfer_credentials',
+      'diploma_second_copy'
     ),
     allowNull: false
   },

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,70 +19,70 @@
         .table-row-hover:hover { background-color: #f3f4f6; transform: translateX(4px); }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-purple-50 to-gray-100 min-h-screen">
+<body class="bg-gradient-to-br from-gray-50 via-[#E8F5BD] to-gray-100 min-h-screen">
     {{>navbar}}
 
-    <main class="max-w-7xl mx-auto px-6 py-12 pt-24">
+    <main class="md:ml-64 px-6 py-12">
         <!-- Page Title -->
         <div class="animate-fade-in-down mb-10">
-            <h1 class="text-5xl font-black text-gray-800 mb-2">Registrar Dashboard</h1>
-            <p class="text-gray-600 text-lg">Process and manage student document requests efficiently</p>
+            <h1 class="text-3xl font-black text-gray-800 mb-2">Registrar Dashboard</h1>
+            <p class="text-gray-600 text-sm">Process and manage student document requests efficiently</p>
         </div>
 
         <!-- Statistics -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-            <div class="stat-card bg-gradient-to-br from-yellow-50 to-amber-100 rounded-xl shadow-lg p-8 border-l-4 border-yellow-600 animate-fade-in-up" style="animation-delay: 0.1s">
+            <div class="stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#A2CB8B] animate-fade-in-up" style="animation-delay: 0.1s">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-yellow-700 text-sm font-bold mb-3 uppercase tracking-wide">Pending</p>
-                        <p class="text-4xl font-black text-yellow-600">{{stats.pendingRequests}}</p>
+                        <p class="text-[#6b9460] text-xs font-bold mb-2 uppercase tracking-wide">Pending</p>
+                        <p class="text-2xl font-black text-[#84B179]">{{stats.pendingRequests}}</p>
                     </div>
-                    <div class="bg-yellow-600 bg-opacity-20 rounded-full p-4">
-                        <i class="fas fa-hourglass-half text-4xl text-yellow-600 opacity-70"></i>
+                    <div class="bg-[#A2CB8B] bg-opacity-20 rounded-full p-3">
+                        <i class="fas fa-hourglass-half text-3xl text-[#A2CB8B] opacity-70"></i>
                     </div>
                 </div>
             </div>
-            <div class="stat-card bg-gradient-to-br from-blue-50 to-cyan-100 rounded-xl shadow-lg p-8 border-l-4 border-blue-600 animate-fade-in-up" style="animation-delay: 0.15s">
+            <div class="stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#84B179] animate-fade-in-up" style="animation-delay: 0.15s">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-blue-700 text-sm font-bold mb-3 uppercase tracking-wide">Processing</p>
-                        <p class="text-4xl font-black text-blue-600">{{stats.processingRequests}}</p>
+                        <p class="text-[#6b9460] text-xs font-bold mb-2 uppercase tracking-wide">Processing</p>
+                        <p class="text-2xl font-black text-[#84B179]">{{stats.processingRequests}}</p>
                     </div>
-                    <div class="bg-blue-600 bg-opacity-20 rounded-full p-4">
-                        <i class="fas fa-cog text-4xl text-blue-600 opacity-70"></i>
+                    <div class="bg-[#84B179] bg-opacity-20 rounded-full p-3">
+                        <i class="fas fa-cog text-3xl text-[#84B179] opacity-70"></i>
                     </div>
                 </div>
             </div>
-            <div class="stat-card bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl shadow-lg p-8 border-l-4 border-green-600 animate-fade-in-up" style="animation-delay: 0.2s">
+            <div class="stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#84B179] animate-fade-in-up" style="animation-delay: 0.2s">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-green-700 text-sm font-bold mb-3 uppercase tracking-wide">Ready</p>
-                        <p class="text-4xl font-black text-green-600">{{stats.readyRequests}}</p>
+                        <p class="text-[#5a7a51] text-xs font-bold mb-2 uppercase tracking-wide">Ready</p>
+                        <p class="text-2xl font-black text-[#6b9460]">{{stats.readyRequests}}</p>
                     </div>
-                    <div class="bg-green-600 bg-opacity-20 rounded-full p-4">
-                        <i class="fas fa-check text-4xl text-green-600 opacity-70"></i>
+                    <div class="bg-[#84B179] bg-opacity-20 rounded-full p-3">
+                        <i class="fas fa-check text-3xl text-[#6b9460] opacity-70"></i>
                     </div>
                 </div>
             </div>
-            <div class="stat-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg p-8 border-l-4 border-purple-600 animate-fade-in-up" style="animation-delay: 0.25s">
+            <div class="stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#84B179] animate-fade-in-up" style="animation-delay: 0.25s">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-purple-700 text-sm font-bold mb-3 uppercase tracking-wide">Total</p>
-                        <p class="text-4xl font-black text-purple-600">{{stats.totalRequests}}</p>
+                        <p class="text-[#6b9460] text-xs font-bold mb-2 uppercase tracking-wide">Total</p>
+                        <p class="text-2xl font-black text-[#84B179]">{{stats.totalRequests}}</p>
                     </div>
-                    <div class="bg-purple-600 bg-opacity-20 rounded-full p-4">
-                        <i class="fas fa-file-alt text-4xl text-purple-600 opacity-70"></i>
+                    <div class="bg-[#84B179] bg-opacity-20 rounded-full p-3">
+                        <i class="fas fa-file-alt text-3xl text-[#84B179] opacity-70"></i>
                     </div>
                 </div>
             </div>
-            <div class="stat-card bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl shadow-lg p-8 border-l-4 border-indigo-600 animate-fade-in-up" style="animation-delay: 0.3s">
+            <div class="stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#6b9460] animate-fade-in-up" style="animation-delay: 0.3s">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-indigo-700 text-sm font-bold mb-3 uppercase tracking-wide">Today</p>
-                        <p class="text-4xl font-black text-indigo-600">{{stats.todayAppointments}}</p>
+                        <p class="text-[#4a6b40] text-xs font-bold mb-2 uppercase tracking-wide">Today</p>
+                        <p class="text-2xl font-black text-[#5a7a51]">{{stats.todayAppointments}}</p>
                     </div>
-                    <div class="bg-indigo-600 bg-opacity-20 rounded-full p-4">
-                        <i class="fas fa-calendar text-4xl text-indigo-600 opacity-70"></i>
+                    <div class="bg-[#6b9460] bg-opacity-20 rounded-full p-3">
+                        <i class="fas fa-calendar text-3xl text-[#5a7a51] opacity-70"></i>
                     </div>
                 </div>
             </div>
@@ -90,23 +90,23 @@
 
         <!-- Quick Actions -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div class="action-btn bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl shadow-xl p-8 text-white transform hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.35s">
-                <div class="mb-6"><i class="fas fa-tasks text-6xl opacity-90"></i></div>
-                <h3 class="text-2xl font-black mb-3">Pending Requests</h3>
-                <p class="mb-8 text-yellow-100 text-lg">Review new document requests</p>
-                <a href="/registrar/requests" class="inline-block bg-white text-yellow-600 px-8 py-3 rounded-xl font-bold hover:bg-yellow-50 transition transform hover:scale-105 shadow-lg"><i class="fas fa-arrow-right mr-2"></i> View</a>
+            <div class="action-btn bg-gradient-to-br from-[#84B179] to-[#84B179] rounded-2xl shadow-xl p-6 text-white transform hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.35s">
+                <div class="mb-4"><i class="fas fa-tasks text-4xl opacity-90"></i></div>
+                <h3 class="text-lg font-black mb-2">Pending Requests</h3>
+                <p class="mb-6 text-[#E8F5BD] text-sm">Review new document requests</p>
+                <a href="/registrar/requests" class="inline-block bg-white text-[#84B179] px-6 py-2 rounded-xl font-bold hover:bg-[#E8F5BD] transition transform hover:scale-105 shadow-lg"><i class="fas fa-arrow-right mr-2"></i> View</a>
             </div>
-            <div class="action-btn bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl shadow-xl p-8 text-white transform hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.4s">
-                <div class="mb-6"><i class="fas fa-calendar-check text-6xl opacity-90"></i></div>
-                <h3 class="text-2xl font-black mb-3">Appointments</h3>
-                <p class="mb-8 text-blue-100 text-lg">Manage appointment schedules</p>
-                <a href="/registrar/appointments" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg"><i class="fas fa-arrow-right mr-2"></i> View</a>
+            <div class="action-btn bg-gradient-to-br from-[#84B179] to-[#6b9460] rounded-2xl shadow-xl p-6 text-white transform hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.4s">
+                <div class="mb-4"><i class="fas fa-calendar-check text-4xl opacity-90"></i></div>
+                <h3 class="text-lg font-black mb-2">Appointments</h3>
+                <p class="mb-6 text-[#E8F5BD] text-sm">Manage appointment schedules</p>
+                <a href="/registrar/appointments" class="inline-block bg-white text-[#6b9460] px-6 py-2 rounded-xl font-bold hover:bg-[#E8F5BD] transition transform hover:scale-105 shadow-lg"><i class="fas fa-arrow-right mr-2"></i> View</a>
             </div>
-            <div class="action-btn bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-xl p-8 text-white transform hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.45s">
-                <div class="mb-6"><i class="fas fa-chart-bar text-6xl opacity-90"></i></div>
-                <h3 class="text-2xl font-black mb-3">Reports</h3>
-                <p class="mb-8 text-purple-100 text-lg">View analytics and reports</p>
-                <a href="/registrar/report" class="inline-block bg-white text-purple-600 px-8 py-3 rounded-xl font-bold hover:bg-purple-50 transition transform hover:scale-105 shadow-lg"><i class="fas fa-arrow-right mr-2"></i> View</a>
+            <div class="action-btn bg-gradient-to-br from-[#6b9460] to-[#5a7a51] rounded-2xl shadow-xl p-6 text-white transform hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.45s">
+                <div class="mb-4"><i class="fas fa-chart-bar text-4xl opacity-90"></i></div>
+                <h3 class="text-lg font-black mb-2">Reports</h3>
+                <p class="mb-6 text-[#E8F5BD] text-sm">View analytics and reports</p>
+                <a href="/registrar/report" class="inline-block bg-white text-[#5a7a51] px-6 py-2 rounded-xl font-bold hover:bg-[#E8F5BD] transition transform hover:scale-105 shadow-lg"><i class="fas fa-arrow-right mr-2"></i> View</a>
             </div>
         </div>
 
@@ -129,17 +129,17 @@
                     <tbody>
                         {{#each recentRequests}}
                             <tr class="table-row-hover border-b-2 border-gray-200">
-                                <td class="px-8 py-5 text-gray-800 font-medium"><i class="fas fa-user mr-2 text-blue-600"></i>{{this.student.name}}</td>
+                                <td class="px-8 py-5 text-gray-800 font-medium"><i class="fas fa-user mr-2 text-[#84B179]"></i>{{this.student.name}}</td>
                                 <td class="px-8 py-5 text-gray-600">{{this.documentType}}</td>
                                 <td class="px-8 py-5">
                                     {{#switch this.status}}
                                         {{#case 'pending'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-yellow-100 text-yellow-800 inline-flex items-center"><i class="fas fa-hourglass-start mr-2"></i>Pending</span>{{/case}}
-                                        {{#case 'processing'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-blue-100 text-blue-800 inline-flex items-center"><i class="fas fa-spinner mr-2"></i>Processing</span>{{/case}}
+                                        {{#case 'processing'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-[#C7EABB] text-[#5a7a51] inline-flex items-center"><i class="fas fa-spinner mr-2"></i>Processing</span>{{/case}}
                                         {{#case 'ready'}}<span class="px-4 py-2 rounded-full text-sm font-bold bg-green-100 text-green-800 inline-flex items-center"><i class="fas fa-check-circle mr-2"></i>Ready</span>{{/case}}
                                     {{/switch}}
                                 </td>
                                 <td class="px-8 py-5 text-gray-600 font-medium">{{formatDate this.createdAt}}</td>
-                                <td class="px-8 py-5"><a href="/registrar/requests/{{this.id}}" class="text-blue-600 hover:text-blue-800 font-bold inline-flex items-center transition hover:translate-x-1"><i class="fas fa-arrow-right mr-2"></i>Process</a></td>
+                                <td class="px-8 py-5"><a href="/registrar/requests/{{this.id}}" class="text-[#84B179] hover:text-[#5a7a51] font-bold inline-flex items-center transition hover:translate-x-1"><i class="fas fa-arrow-right mr-2"></i>Process</a></td>
                             </tr>
                         {{else}}
                             <tr>

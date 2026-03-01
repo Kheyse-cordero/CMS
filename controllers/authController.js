@@ -3,8 +3,8 @@
 import bcrypt from "bcrypt";
 import { User, sequelize } from "../models/userModel.js";
 
-export const loginPage = (req, res) => res.render("login", { title: "Login" });
-export const registerPage = (req, res) => res.render("register", { title: "Register" });
+export const loginPage = (req, res) => res.redirect("/?modal=login");
+export const registerPage = (req, res) => res.redirect("/?modal=register");
 export const forgotPasswordPage = (req, res) => res.render("forgotpassword", { title: "Forgot Password" });
 
 export const dashboardPage = (req, res) => {
@@ -18,32 +18,20 @@ export const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.render("login", { 
-        title: "Login", 
-        error: "User not found" 
-      });
+      return res.redirect("/?modal=login&error=" + encodeURIComponent("User not found"));
     }
     
     if (user.status === 'inactive') {
-      return res.render("login", { 
-        title: "Login", 
-        error: "Your account is inactive. Contact administrator." 
-      });
+      return res.redirect("/?modal=login&error=" + encodeURIComponent("Your account is inactive. Contact administrator."));
     }
     
     if (user.status === 'suspended') {
-      return res.render("login", { 
-        title: "Login", 
-        error: "Your account has been suspended." 
-      });
+      return res.redirect("/?modal=login&error=" + encodeURIComponent("Your account has been suspended."));
     }
     
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return res.render("login", { 
-        title: "Login", 
-        error: "Incorrect password" 
-      });
+      return res.redirect("/?modal=login&error=" + encodeURIComponent("Incorrect password"));
     }
     
     req.session.userId = user.id;
@@ -73,10 +61,7 @@ export const registerUser = async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return res.render("register", {
-        title: "Register",
-        error: "Email already registered"
-      });
+      return res.redirect("/?modal=register&error=" + encodeURIComponent("Email already registered"));
     }
     
     // Determine role based on email domain
@@ -119,15 +104,12 @@ export const registerUser = async (req, res) => {
     res.redirect("/student/dashboard");
   } catch (err) {
     console.error("Registration error:", err);
-    res.render("register", {
-      title: "Register",
-      error: err.message || "An error occurred during registration"
-    });
+    res.redirect("/?modal=register&error=" + encodeURIComponent(err.message || "An error occurred during registration"));
   }
 };
 
 export const logoutUser = (req, res) => {
   req.session.destroy();
-  res.redirect("/login");
+  res.redirect("/?loggedOut=1");
 };
 

@@ -51,9 +51,16 @@ if (createDb) {
 try {
   await sequelize.authenticate();
   console.log("✅ Connected to MySQL database!");
+
+  // Disable FK checks so external tables referencing ours don't block the drop
+  await sequelize.query("SET FOREIGN_KEY_CHECKS = 0;");
   await sequelize.sync({ force: true }); // Drops and recreates tables
+  await sequelize.query("SET FOREIGN_KEY_CHECKS = 1;");
+
   console.log("✅ Tables created for all models!");
 } catch (err) {
+  // Re-enable FK checks even on failure
+  try { await sequelize.query("SET FOREIGN_KEY_CHECKS = 1;"); } catch (_) {}
   console.error("❌ Migration failed:", err);
 } finally {
   process.exit();

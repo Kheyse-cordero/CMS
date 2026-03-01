@@ -1,81 +1,108 @@
-<nav class="bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg fixed w-full top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <div class="flex items-center space-x-2">
-                <div class="bg-white rounded-lg p-2">
-                    <i class="fas fa-file-contract text-blue-600 text-2xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-white font-bold text-lg">MinSU DocuReg</h1>
-                    <p class="text-blue-100 text-xs">Document Management</p>
-                </div>
+﻿<!-- Sidebar Overlay (mobile) -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gradient-to-b from-[#84B179] to-[#6b9460] shadow-2xl z-50 flex flex-col transition-transform duration-300 -translate-x-full md:translate-x-0">
+
+    <!-- Logo -->
+    <div class="p-6 border-b border-[#84B179]">
+        <div class="flex items-center space-x-3">
+            <div class="bg-white rounded-lg p-2 flex-shrink-0">
+                <i class="fas fa-file-contract text-[#84B179] text-xl"></i>
             </div>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-6">
-                {{#if user}}
-                    <span class="text-blue-100 text-sm">
-                        <i class="fas fa-user-circle"></i> {{user.name}}
-                    </span>
-                    
-                    {{#if_eq user.role 'student'}}
-                        <a href="/student/dashboard" class="text-blue-100 hover:text-white transition">Dashboard</a>
-                        <a href="/student/requests" class="text-blue-100 hover:text-white transition">My Requests</a>
-                    {{/if_eq}}
-                    
-                    {{#if_eq user.role 'registrar'}}
-                        <a href="/registrar/dashboard" class="text-blue-100 hover:text-white transition">Dashboard</a>
-                        <a href="/registrar/requests" class="text-blue-100 hover:text-white transition">Requests</a>
-                        <a href="/registrar/appointments" class="text-blue-100 hover:text-white transition">Appointments</a>
-                    {{/if_eq}}
-                    
-                    {{#if_eq user.role 'admin'}}
-                        <a href="/admin/dashboard" class="text-blue-100 hover:text-white transition">Dashboard</a>
-                        <a href="/admin/users" class="text-blue-100 hover:text-white transition">Users</a>
-                        <a href="/admin/analytics" class="text-blue-100 hover:text-white transition">Analytics</a>
-                    {{/if_eq}}
-                    
-                    <a href="/logout" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition font-semibold">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                {{/if}}
+            <div>
+                <h1 class="text-white font-bold text-base leading-tight">MinSU DocuReg</h1>
+                <p class="text-[#C7EABB] text-xs">Document Management</p>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button onclick="toggleMobileMenu()" class="md:hidden text-white text-2xl">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-blue-700 pb-4">
-            {{#if user}}
-                <div class="px-4 py-2 text-blue-100 border-b border-blue-600">
-                    <i class="fas fa-user-circle"></i> {{user.name}}
-                </div>
-                
-                {{#if_eq user.role 'student'}}
-                    <a href="/student/dashboard" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">Dashboard</a>
-                    <a href="/student/requests" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">My Requests</a>
-                {{/if_eq}}
-                
-                {{#if_eq user.role 'registrar'}}
-                    <a href="/registrar/dashboard" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">Dashboard</a>
-                    <a href="/registrar/requests" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">Requests</a>
-                    <a href="/registrar/appointments" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">Appointments</a>
-                {{/if_eq}}
-                
-                {{#if_eq user.role 'admin'}}
-                    <a href="/admin/dashboard" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">Dashboard</a>
-                    <a href="/admin/users" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">Users</a>
-                    <a href="/admin/analytics" class="block px-4 py-2 text-blue-100 hover:bg-blue-600">Analytics</a>
-                {{/if_eq}}
-                
-                <a href="/logout" class="block px-4 py-2 bg-red-500 text-white hover:bg-red-600 m-2 rounded-lg text-center font-semibold">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            {{/if}}
         </div>
     </div>
-</nav>
+
+    <!-- User Info -->
+    {{#if user}}
+    <div class="px-4 py-4 border-b border-[#84B179]">
+        <div class="flex items-center space-x-3">
+            <div class="bg-[#A2CB8B] rounded-full p-2 flex-shrink-0">
+                <i class="fas fa-user text-white text-sm"></i>
+            </div>
+            <div class="min-w-0">
+                <p class="text-white font-semibold text-sm truncate">{{user.name}}</p>
+                <p class="text-[#C7EABB] text-xs capitalize">{{user.role}}</p>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+    <!-- Navigation -->
+    <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+        {{#if user}}
+            {{#if_eq user.role 'student'}}
+                <a href="/student/dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium group">
+                    <i class="fas fa-tachometer-alt w-5 text-center"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/student/requests" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-file-alt w-5 text-center"></i>
+                    <span>My Requests</span>
+                </a>
+                <a href="/student/requests" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-plus-circle w-5 text-center"></i>
+                    <span>New Request</span>
+                </a>
+            {{/if_eq}}
+
+            {{#if_eq user.role 'registrar'}}
+                <a href="/registrar/dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-tachometer-alt w-5 text-center"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/registrar/requests" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-tasks w-5 text-center"></i>
+                    <span>Pending Requests</span>
+                </a>
+                <a href="/registrar/appointments" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-calendar-check w-5 text-center"></i>
+                    <span>Appointments</span>
+                </a>
+            {{/if_eq}}
+
+            {{#if_eq user.role 'admin'}}
+                <a href="/admin/dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-tachometer-alt w-5 text-center"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/admin/users" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-users w-5 text-center"></i>
+                    <span>Users</span>
+                </a>
+                <a href="/admin/analytics" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-[#E8F5BD] hover:bg-[#84B179] hover:text-white transition font-medium">
+                    <i class="fas fa-chart-bar w-5 text-center"></i>
+                    <span>Analytics</span>
+                </a>
+            {{/if_eq}}
+        {{/if}}
+    </nav>
+
+    <!-- Logout -->
+    {{#if user}}
+    <div class="p-4 border-t border-[#84B179]">
+        <a href="/logout" class="flex items-center space-x-3 px-4 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white transition font-semibold">
+            <i class="fas fa-sign-out-alt w-5 text-center"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+    {{/if}}
+</aside>
+
+<!-- Mobile Toggle Button -->
+<button onclick="toggleSidebar()" class="fixed top-4 left-4 z-50 md:hidden bg-[#84B179] text-white p-3 rounded-xl shadow-lg">
+    <i class="fas fa-bars"></i>
+</button>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+    }
+</script>

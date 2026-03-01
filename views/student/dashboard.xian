@@ -25,60 +25,60 @@
         .table-row-hover:hover { background-color: #f3f4f6; transform: translateX(4px); }
     </style>
 </head>
-<body class='bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100 min-h-screen'>
+<body class='bg-gradient-to-br from-gray-50 via-[#E8F5BD] to-gray-100 min-h-screen'>
     {{>navbar}}
-    <main class='max-w-7xl mx-auto px-6 py-12 pt-24'>
+    <main class='md:ml-64 px-6 py-12'>
         <div class='animate-fade-in-down mb-10'>
-            <h1 class='text-5xl font-black text-gray-800 mb-2'>Student Dashboard</h1>
-            <p class='text-gray-600 text-lg'>Welcome back {{user.name}}! Here's your document request overview.</p>
+            <h1 class='text-3xl font-black text-gray-800 mb-2'>Student Dashboard</h1>
+            <p class='text-gray-600 text-sm'>Welcome back {{user.name}}! Here's your document request overview.</p>
         </div>
         <div class='grid grid-cols-1 md:grid-cols-3 gap-6 mb-12'>
-            <div class='stat-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg p-8 border-l-4 border-blue-600 animate-fade-in-up' style='animation-delay: 0.1s'>
+            <div class='stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#84B179] animate-fade-in-up' style='animation-delay: 0.1s'>
                 <div class='flex items-center justify-between'>
                     <div>
-                        <p class='text-blue-700 text-sm font-bold mb-3 uppercase tracking-wide'>Total Requests</p>
-                        <p class='text-5xl font-black text-blue-600'>{{stats.total}}</p>
+                        <p class='text-[#6b9460] text-xs font-bold mb-2 uppercase tracking-wide'>Total Requests</p>
+                        <p class='text-2xl font-black text-[#84B179]'>{{stats.total}}</p>
                     </div>
-                    <div class='bg-blue-600 bg-opacity-20 rounded-full p-6'>
-                        <i class='fas fa-file-alt text-6xl text-blue-600 opacity-70'></i>
+                    <div class='bg-[#84B179] bg-opacity-20 rounded-full p-3'>
+                        <i class='fas fa-file-alt text-3xl text-[#84B179] opacity-70'></i>
                     </div>
                 </div>
             </div>
-            <div class='stat-card bg-gradient-to-br from-yellow-50 to-amber-100 rounded-xl shadow-lg p-8 border-l-4 border-yellow-600 animate-fade-in-up' style='animation-delay: 0.2s'>
+            <div class='stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#A2CB8B] animate-fade-in-up' style='animation-delay: 0.2s'>
                 <div class='flex items-center justify-between'>
                     <div>
-                        <p class='text-yellow-700 text-sm font-bold mb-3 uppercase tracking-wide'>Pending</p>
-                        <p class='text-5xl font-black text-yellow-600'>{{stats.pending}}</p>
+                        <p class='text-[#6b9460] text-xs font-bold mb-2 uppercase tracking-wide'>Pending</p>
+                        <p class='text-2xl font-black text-[#84B179]'>{{stats.pending}}</p>
                     </div>
-                    <div class='bg-yellow-600 bg-opacity-20 rounded-full p-6'>
-                        <i class='fas fa-clock text-6xl text-yellow-600 opacity-70'></i>
+                    <div class='bg-[#A2CB8B] bg-opacity-20 rounded-full p-3'>
+                        <i class='fas fa-clock text-3xl text-[#A2CB8B] opacity-70'></i>
                     </div>
                 </div>
             </div>
-            <div class='stat-card bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl shadow-lg p-8 border-l-4 border-green-600 animate-fade-in-up' style='animation-delay: 0.3s'>
+            <div class='stat-card bg-gradient-to-br from-[#E8F5BD] to-[#C7EABB] rounded-xl shadow-lg p-6 border-l-4 border-[#84B179] animate-fade-in-up' style='animation-delay: 0.3s'>
                 <div class='flex items-center justify-between'>
                     <div>
-                        <p class='text-green-700 text-sm font-bold mb-3 uppercase tracking-wide'>Completed</p>
-                        <p class='text-5xl font-black text-green-600'>{{stats.completed}}</p>
+                        <p class='text-[#5a7a51] text-xs font-bold mb-2 uppercase tracking-wide'>Completed</p>
+                        <p class='text-2xl font-black text-[#6b9460]'>{{stats.completed}}</p>
                     </div>
-                    <div class='bg-green-600 bg-opacity-20 rounded-full p-6'>
-                        <i class='fas fa-check-circle text-6xl text-green-600 opacity-70'></i>
+                    <div class='bg-[#84B179] bg-opacity-20 rounded-full p-3'>
+                        <i class='fas fa-check-circle text-3xl text-[#6b9460] opacity-70'></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class='grid grid-cols-1 md:grid-cols-2 gap-6 mb-12'>
-            <div class='action-btn bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl shadow-xl p-8 text-white transform hover:shadow-2xl animate-fade-in-up' style='animation-delay: 0.4s'>
-                <div class='mb-6'><i class='fas fa-plus-circle text-7xl opacity-90'></i></div>
-                <h3 class='text-3xl font-black mb-3'>New Request</h3>
-                <p class='mb-8 text-blue-100 text-lg'>Submit a new document request for processing.</p>
-                <a href='/student/request/new' class='inline-block bg-white text-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition transform hover:scale-105 shadow-lg'><i class='fas fa-arrow-right mr-2'></i> Request Document</a>
+            <div class='action-btn bg-gradient-to-br from-[#84B179] to-[#6b9460] rounded-2xl shadow-xl p-6 text-white transform hover:shadow-2xl animate-fade-in-up' style='animation-delay: 0.4s'>
+                <div class='mb-4'><i class='fas fa-plus-circle text-4xl opacity-90'></i></div>
+                <h3 class='text-xl font-black mb-2'>New Request</h3>
+                <p class='mb-6 text-[#E8F5BD] text-sm'>Submit a new document request for processing.</p>
+                <a href='/student/requests?newRequest=1' class='inline-block bg-white text-[#84B179] px-6 py-2 rounded-xl font-bold hover:bg-[#E8F5BD] transition transform hover:scale-105 shadow-lg'><i class='fas fa-arrow-right mr-2'></i> Request Document</a>
             </div>
-            <div class='action-btn bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl shadow-xl p-8 text-white transform hover:shadow-2xl animate-fade-in-up' style='animation-delay: 0.5s'>
-                <div class='mb-6'><i class='fas fa-list text-7xl opacity-90'></i></div>
-                <h3 class='text-3xl font-black mb-3'>My Requests</h3>
-                <p class='mb-8 text-purple-100 text-lg'>View and track all your document requests.</p>
-                <a href='/student/requests' class='inline-block bg-white text-purple-600 px-8 py-3 rounded-xl font-bold hover:bg-purple-50 transition transform hover:scale-105 shadow-lg'><i class='fas fa-eye mr-2'></i> View Requests</a>
+            <div class='action-btn bg-gradient-to-br from-[#84B179] to-[#6b9460] rounded-2xl shadow-xl p-6 text-white transform hover:shadow-2xl animate-fade-in-up' style='animation-delay: 0.5s'>
+                <div class='mb-4'><i class='fas fa-list text-4xl opacity-90'></i></div>
+                <h3 class='text-xl font-black mb-2'>My Requests</h3>
+                <p class='mb-6 text-[#E8F5BD] text-sm'>View and track all your document requests.</p>
+                <a href='/student/requests' class='inline-block bg-white text-[#6b9460] px-6 py-2 rounded-xl font-bold hover:bg-[#E8F5BD] transition transform hover:scale-105 shadow-lg'><i class='fas fa-eye mr-2'></i> View Requests</a>
             </div>
         </div>
         <div class='bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in-up' style='animation-delay: 0.6s'>
@@ -100,19 +100,19 @@
                             {{#each recentRequests}}
                             <tr class='table-row-hover border-b-2 border-gray-200'>
                                 <td class='px-8 py-5 text-gray-800 font-medium'>
-                                    <i class='fas fa-{{#switch this.documentType}}{{#case 'transcript'}}graduation-cap{{/case}}{{#case 'diploma'}}certificate{{/case}}{{#case 'certificate'}}award{{/case}}{{#case 'verification'}}check-circle{{/case}}{{#case 'enrollment_certificate'}}id-card{{/case}}{{#case 'good_moral'}}star{{/case}}{{/switch}} mr-2 text-blue-600'></i>{{this.documentType}}
+                                    <i class='fas fa-{{#switch this.documentType}}{{#case 'transcript'}}graduation-cap{{/case}}{{#case 'diploma'}}certificate{{/case}}{{#case 'certificate'}}award{{/case}}{{#case 'verification'}}check-circle{{/case}}{{#case 'enrollment_certificate'}}id-card{{/case}}{{#case 'good_moral'}}star{{/case}}{{/switch}} mr-2 text-[#84B179]'></i>{{this.documentType}}
                                 </td>
                                 <td class='px-8 py-5'>
                                     {{#switch this.status}}
                                         {{#case 'pending'}}<span class='px-4 py-2 rounded-full text-sm font-bold bg-yellow-100 text-yellow-800 inline-flex items-center'><i class='fas fa-hourglass-start mr-2'></i> Pending</span>{{/case}}
-                                        {{#case 'processing'}}<span class='px-4 py-2 rounded-full text-sm font-bold bg-blue-100 text-blue-800 inline-flex items-center'><i class='fas fa-spinner mr-2'></i> Processing</span>{{/case}}
+                                        {{#case 'processing'}}<span class='px-4 py-2 rounded-full text-sm font-bold bg-[#C7EABB] text-[#5a7a51] inline-flex items-center'><i class='fas fa-spinner mr-2'></i> Processing</span>{{/case}}
                                         {{#case 'ready'}}<span class='px-4 py-2 rounded-full text-sm font-bold bg-green-100 text-green-800 inline-flex items-center'><i class='fas fa-check-circle mr-2'></i> Ready</span>{{/case}}
                                         {{#case 'completed'}}<span class='px-4 py-2 rounded-full text-sm font-bold bg-emerald-100 text-emerald-800 inline-flex items-center'><i class='fas fa-check-double mr-2'></i> Completed</span>{{/case}}
                                         {{#case 'rejected'}}<span class='px-4 py-2 rounded-full text-sm font-bold bg-red-100 text-red-800 inline-flex items-center'><i class='fas fa-times-circle mr-2'></i> Rejected</span>{{/case}}
                                     {{/switch}}
                                 </td>
                                 <td class='px-8 py-5 text-gray-600 font-medium'>{{formatDate this.createdAt}}</td>
-                                <td class='px-8 py-5'><a href='/student/requests/{{this.id}}' class='text-blue-600 hover:text-blue-800 font-bold inline-flex items-center transition hover:translate-x-1'><i class='fas fa-arrow-right mr-2'></i> Details</a></td>
+                                <td class='px-8 py-5'><a href='/student/requests/{{this.id}}' class='text-[#84B179] hover:text-[#5a7a51] font-bold inline-flex items-center transition hover:translate-x-1'><i class='fas fa-arrow-right mr-2'></i> Details</a></td>
                             </tr>
                             {{/each}}
                         {{else}}
@@ -120,7 +120,7 @@
                             <td colspan='4' class='px-8 py-12 text-center text-gray-600'>
                                 <i class='fas fa-inbox text-4xl mb-4 text-gray-400'></i>
                                 <p class='text-lg font-semibold'>No requests yet</p>
-                                <p class='text-sm'>Start by <a href='/student/request/new' class='text-blue-600 hover:text-blue-800 font-bold'>creating a new request</a></p>
+                                <p class='text-sm'>Start by <a href='/student/requests?newRequest=1' class='text-[#84B179] hover:text-[#5a7a51] font-bold'>creating a new request</a></p>
                             </td>
                         </tr>
                         {{/if}}
